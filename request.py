@@ -1,4 +1,4 @@
 import requests
 
-res=requests.get("http://localhost:8000/api/",params={'abc':123})
-print(res.json()['message'])
+res=requests.post("http://localhost:8000/api/",json={'title':'abc','content':"this is trying for post method"})
+print(res.json())

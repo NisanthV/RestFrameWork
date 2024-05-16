@@ -9,13 +9,7 @@ import json
 
 @api_view(["GET","POST"])
 def home(req,*args,**kwargs):
-    instance=Product.objects.all().order_by("?").first()
-    print(instance)
-    data={}
-    data=ProductSerializer(instance).data
-    # data=model_to_dict(temp,fields=['id','title','content','price','sale'])
-    # data['params']=req.GET
-    # data['title']=temp.title
-    # data['content'] = temp.content
-    # data['price'] = temp.price
-    return Response({"message":["hai there",data]})
+    serializer=ProductSerializer(data=req.data)
+    if serializer.is_valid(raise_exception=True):
+        return Response(serializer.data)
+    return Response({"message":"invalide data"})
